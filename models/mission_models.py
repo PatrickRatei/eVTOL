@@ -33,7 +33,7 @@ class FixedStandardAtmosphere(Model):
 
 
 class HoverFlightState(Model):
-    def setup(self, h=0 * ureg.m):
+    def setup(self, h=0.0 * ureg.m):
 
         self.L = L = Variable("L", "N", "Lift")
         self.W = W = Variable("W", "N", "Vehicle weight")
@@ -59,7 +59,7 @@ class HoverFlightState(Model):
 
 
 class LevelFlightState(Model):
-    def setup(self, h=0 * ureg.m):
+    def setup(self, h=0.0 * ureg.m):
 
         self.v = v = Variable("v", "m/s", "Flight speed")
         self.L = L = Variable("L", "N", "Lift")

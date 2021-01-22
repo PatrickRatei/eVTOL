@@ -882,6 +882,26 @@ plt.tight_layout()
 plt.subplots_adjust(left=0.23, right=0.98, bottom=0.30, top=0.98)
 plt.savefig("config_tradeStudy_plot_09_MissionOperatingExpenses.pdf")
 
+# Sound Pressure Level (sizing mission)
+fig10 = plt.figure(figsize=(4, 3.7), dpi=80)
+for i, config in enumerate(configs):
+
+    SPL_A = configs[config]["SPL_A"].magnitude
+
+    plt.bar(i, SPL_A, align="center", alpha=1, color="k", edgecolor="k")
+
+plt.grid()
+plt.xticks(
+    y_pos, labels, fontsize=style["fontsize"]["xticks"], rotation=style["rotation"]
+)
+plt.yticks(fontsize=style["fontsize"]["yticks"])
+plt.ylabel("SPL (dBA)", fontsize=style["fontsize"]["ylabel"])
+# plt.title("Hover Sound", fontsize=style["fontsize"]["title"])
+# plt.legend(loc="lower left", fontsize=style["fontsize"]["legend"], framealpha=1)
+
+plt.tight_layout()
+plt.subplots_adjust(left=0.23, right=0.98, bottom=0.30, top=0.98)
+plt.savefig("config_tradeStudy_plot_10_SoundPressureLevel.pdf")
 
 # Data output (to screen and to text file)
 outputs = [

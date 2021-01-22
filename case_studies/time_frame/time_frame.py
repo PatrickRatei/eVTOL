@@ -336,8 +336,7 @@ for i, config in enumerate(cases):
     for j, case in enumerate(cases[config]):
 
         offset = style["offsets"][j]
-        SPL_A = cases[config][case]["SPL_sizing_A"]
-
+        SPL_A = cases[config][case]["SPL_sizing_A"].magnitude
         plt.bar(
             i + offset,
             SPL_A,
@@ -379,9 +378,13 @@ for i, config in enumerate(cases):
 
         offset = style["offsets"][j]
         solution = cases[config][case]["solution"]
-        c_airframe = solution("OnDemandAircraft.Airframe.purchase_price") / 1e6
-        c_avionics = solution("OnDemandAircraft.Avionics.purchase_price") / 1e6
-        c_battery = solution("OnDemandAircraft.Battery.purchase_price") / 1e6
+        c_airframe = (
+            solution("OnDemandAircraft.Airframe.purchase_price").magnitude / 1e6
+        )
+        c_avionics = (
+            solution("OnDemandAircraft.Avionics.purchase_price").magnitude / 1e6
+        )
+        c_battery = solution("OnDemandAircraft.Battery.purchase_price").magnitude / 1e6
         c_total = c_airframe + c_avionics + c_battery
 
         plt.bar(
@@ -415,12 +418,15 @@ for i, config in enumerate(cases):
         offset = style["offsets"][j]
         solution = cases[config][case]["solution"]
 
-        NdNr = solution("OnDemandMissionCost.N_{deadhead}/N_{revenue}")
+        NdNr = solution("OnDemandMissionCost.N_{deadhead}/N_{revenue}").magnitude
         amortized_capex_revenue = solution(
             "OnDemandMissionCost.RevenueMissionCost.CapitalExpenses.cost_per_mission"
-        )
-        amortized_capex_deadhead = NdNr * solution(
-            "OnDemandMissionCost.DeadheadMissionCost.CapitalExpenses.cost_per_mission"
+        ).magnitude
+        amortized_capex_deadhead = (
+            NdNr
+            * solution(
+                "OnDemandMissionCost.DeadheadMissionCost.CapitalExpenses.cost_per_mission"
+            ).magnitude
         )
         amortized_capex = amortized_capex_revenue + amortized_capex_deadhead
 
@@ -455,12 +461,15 @@ for i, config in enumerate(cases):
         offset = style["offsets"][j]
         solution = cases[config][case]["solution"]
 
-        NdNr = solution("OnDemandMissionCost.N_{deadhead}/N_{revenue}")
+        NdNr = solution("OnDemandMissionCost.N_{deadhead}/N_{revenue}").magnitude
         amortized_opex_revenue = solution(
             "OnDemandMissionCost.RevenueMissionCost.OperatingExpenses.cost_per_mission"
-        )
-        amortized_opex_deadhead = NdNr * solution(
-            "OnDemandMissionCost.DeadheadMissionCost.OperatingExpenses.cost_per_mission"
+        ).magnitude
+        amortized_opex_deadhead = (
+            NdNr
+            * solution(
+                "OnDemandMissionCost.DeadheadMissionCost.OperatingExpenses.cost_per_mission"
+            ).magnitude
         )
         amortized_opex = amortized_opex_revenue + amortized_opex_deadhead
         plt.bar(
