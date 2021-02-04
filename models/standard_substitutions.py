@@ -5,8 +5,8 @@ from collections import OrderedDict
 
 # Generic data (i.e. for all configs)
 generic_data = {}
-time_frame = "2025"  # Years 2025 and 2050
-use_case = "Airport Shuttle"  # Intra-City, Airport Shuttle, Sub-Urban, Megacity
+time_frame = "2050"  # Years 2025 and 2050
+use_case = "Sub-Urban"  # Intra-City, Airport Shuttle, Sub-Urban, Megacity
 
 # Configurations included in the trade study
 configs = OrderedDict()
@@ -37,10 +37,10 @@ if time_frame == "2025":
     avionics_lifetime = 10000.0 * ureg.hour
     battery_energy_density = 300.0 * ureg.Wh / ureg.kg
     battery_power_density = 3.0 * ureg.kW / ureg.kg
-    battery_energy_fraction = 0.64
+    battery_energy_fraction = 0.8
     battery_cost_per_energy = 250.0 * ureg.kWh ** -1
     battery_cycle_life = 800.0
-    aircraft_per_remote_pilot = 6
+    aircraft_per_remote_pilot = 4
     charger_power = 250.0 * ureg.kW
     cost_per_energy = 0.21 * ureg.kWh ** -1
     IOC_fraction = 0.40
@@ -58,10 +58,10 @@ elif time_frame == "2050":
     avionics_lifetime = 20000.0 * ureg.hour
     battery_energy_density = 600.0 * ureg.Wh / ureg.kg
     battery_power_density = 5.0 * ureg.kW / ureg.kg
-    battery_energy_fraction = 0.8
+    battery_energy_fraction = 0.9
     battery_cost_per_energy = 150.0 * ureg.kWh ** -1
     battery_cycle_life = 2000.0
-    aircraft_per_remote_pilot = 10
+    aircraft_per_remote_pilot = 8
     charger_power = 1000.0 * ureg.kW
     cost_per_energy = 0.15 * ureg.kWh ** -1
     IOC_fraction = 0.30
@@ -155,7 +155,7 @@ if v_cruise > v_max_multirotor:
 else:
     v_cruise_multirotor = v_cruise
 
-v_max_helicopter = 200 * ureg.kph
+v_max_helicopter = 250 * ureg.kph
 if v_cruise > v_max_helicopter:
     v_cruise_helicopter = v_max_helicopter
 else:
